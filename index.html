@@ -472,6 +472,20 @@
 					type="file"
 					onchange="uploadSavedataPending(this.files[0]);"
 				/>
+				<button
+					class="bigbutton"
+					id="rubysapphire"
+					onclick="gba.game = 1; gba.fefunc = frameEvent"
+				>
+					Ruby/Sapphire
+				</button>
+				<button
+					class="bigbutton"
+					id="emerald"
+					onclick="gba.game = 0; gba.fefunc = frameEvent"
+				>
+					Emerald
+				</button>
 			</div>
 			<div id="ingame" class="hidden">
 				<button id="pause" class="bigbutton" onclick="togglePause()">
