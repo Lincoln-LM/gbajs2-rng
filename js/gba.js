@@ -178,6 +178,7 @@ class GameBoyAdvance {
 			this.seenSave = true;
 			this.mmu.flushSave();
 		}
+		document.getElementById("prng").innerText = (gba.mmu.load32(0x3005D80)>>>0).toString(16); //poor way of updating prng but works for now
 	}
 	runStable() {
 		if (this.interval) {
