@@ -365,6 +365,7 @@
 					gba.frame = frame;
 					document.getElementById("prng").innerText = prng.toString(16); //poor way of updating rng values but works for now
 					document.getElementById("frame").innerText = gba.frame;
+					document.getElementById("initial").innerText = initial1.toString(16);
 				}
 					
 					
@@ -395,6 +396,7 @@
 					}
 					document.getElementById("prng").innerText = prng.toString(16); //poor way of updating rng values but works for now
 					document.getElementById("frame").innerText = gba.frame;
+					document.getElementById("initial").innerText = gba.initial.toString(16);
 					
 				}
 						
@@ -509,6 +511,7 @@
 				</label> <!--poor way of setting position but works for now-->
 				<label id="prng" style="position:relative; left:375px; top:-70px">00000000</label>
 				<label id="frame" style="position:relative; left:260px; top:-130px">0</label>
+				<label id="initial" style="position:relative; left:145px; top:-190px">0000</label>
 				<div id="sound">
 					<input
 						type="checkbox"
