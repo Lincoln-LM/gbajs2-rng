@@ -61,11 +61,14 @@
 
 					gba.setBios(biosBin);
 
-					if (!gba.audio.context) {
+					//if (!gba.audio.context) {
 						// Remove the sound box if sound isn't available
-						let soundbox = document.getElementById('sound');
-						soundbox.parentElement.removeChild(soundbox);
-					}
+						//let soundbox = document.getElementById('sound');
+						//soundbox.parentElement.removeChild(soundbox);
+					//}
+					
+					let soundbox = document.getElementById('sound');
+					soundbox.parentElement.removeChild(soundbox);
 
 					if (
 						window.navigator.appName ===
