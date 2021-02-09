@@ -382,12 +382,14 @@
 					if (prng == 0 & framecounter == 0) {
 						gba.initial = 0;
 						gba.adjustFrame = 0;
+						gba.frame = 0;
 					}
 					if (gba.frame > 4 & gba.tinitial != prng) {
 							gba.backSeed = gba.tinitial;
 							gba.calibrationFrame = 0;
 						
 						while (gba.tinitial != prng & gba.backSeed != prng) {
+							
 							gba.tinitial = next(gba.tinitial);
 							gba.backSeed = back(gba.backSeed);
 							gba.calibrationFrame += 1;
