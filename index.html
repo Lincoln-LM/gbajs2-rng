@@ -386,7 +386,7 @@
 							gba.calibrationFrame = 0;
 						
 						while (gba.tinitial != prng & gba.backSeed != prng) {
-							gba.tinitial next(gba.tinitial);
+							gba.tinitial = next(gba.tinitial);
 							gba.backSeed = back(backSeed);
 							gba.calibrationFrame += 1;
 						}
