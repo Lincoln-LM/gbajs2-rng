@@ -26,6 +26,7 @@
 			let gba;
 			let runCommands = [];
 			let debug = null;
+			let memory
 
 			try {
 				gba = new GameBoyAdvance();
@@ -45,6 +46,7 @@
 					crash.setAttribute('src', 'resources/crash.png');
 					screen.parentElement.insertBefore(crash, screen);
 					screen.setAttribute('class', 'dead');
+					memory = gba.mmu;
 				});
 			} catch (exception) {
 				gba = null;
@@ -198,6 +200,17 @@
         image.src = data;
         let w = window.open("");
         w.document.write(image.outerHTML);
+			}
+			
+			function nextFrame() {
+				if (!gba.paused) {
+					gba.pause();
+				}
+				gba.advanceFrame();
+			}
+			
+			function display() {
+				gba.advanceFrame();
 			}
 
 			function lcdFade(context, target, callback) {
