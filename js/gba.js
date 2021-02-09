@@ -58,9 +58,18 @@ class GameBoyAdvance {
 		this.seenFrame = false;
 		this.seenSave = false;
 		this.lastVblank = 0;
-		this.frame = 0;
+		
 		this.fefunc = null;
-		this.address = 0x0;
+		
+		//rng values
+		this.frame = 0;
+		this.adjustFrame = 0;
+		this.initial = 0;
+		this.tinitial = 0;
+		this.backSeed = 0;
+		this.calibrationFrame = 0;
+		
+		
 		
 		this.queue = null;
 		this.reportFPS = null;
@@ -139,7 +148,13 @@ class GameBoyAdvance {
 		this.audio.clear();
 		this.video.clear();
 		this.sio.clear();
+		//rng values
 		this.frame = 0;
+		this.adjustFrame = 0;
+		this.initial = 0;
+		this.tinitial = 0;
+		this.backSeed = 0;
+		this.calibrationFrame = 0;
 
 		this.mmu.mmap(this.mmu.REGION_IO, this.io);
 		this.mmu.mmap(
