@@ -59,6 +59,7 @@ class GameBoyAdvance {
 		this.seenSave = false;
 		this.lastVblank = 0;
 		this.frame = 0;
+		this.fefunc = null;
 		
 		this.queue = null;
 		this.reportFPS = null;
@@ -180,7 +181,9 @@ class GameBoyAdvance {
 			this.mmu.flushSave();
 		}
 		this.frame += 1;
-		frameEvent(this);
+		if (this.fefunc != null) {
+			this.fefunc(this);
+		}
 	}
 	runStable() {
 		if (this.interval) {
@@ -405,8 +408,4 @@ class GameBoyAdvance {
 			throw new Error("Assertion failed: " + err);
 		}
 	}
-}
-function frameEvent(gba) {
-	document.getElementById("prng").innerText = (gba.mmu.load32(0x3005D80)>>>0).toString(16); //poor way of updating rng values but works for now
-	document.getElementById("frame").innerText = gba.frame;
 }
