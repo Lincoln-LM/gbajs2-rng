@@ -58,7 +58,8 @@ class GameBoyAdvance {
 		this.seenFrame = false;
 		this.seenSave = false;
 		this.lastVblank = 0;
-
+		this.frame = 0;
+		
 		this.queue = null;
 		this.reportFPS = null;
 		this.throttle = 16; // This is rough, but the 2/3ms difference gives us a good overhead
@@ -178,8 +179,8 @@ class GameBoyAdvance {
 			this.seenSave = true;
 			this.mmu.flushSave();
 		}
-		document.getElementById("prng").innerText = (gba.mmu.load32(0x3005D80)>>>0).toString(16); //poor way of updating rng values but works for now
-		document.getElementById("frame").innerText = parseInt(document.getElementById("frame").innerText) + 1;
+		this.frame += 1;
+		frameEvent(this);
 	}
 	runStable() {
 		if (this.interval) {
@@ -404,4 +405,8 @@ class GameBoyAdvance {
 			throw new Error("Assertion failed: " + err);
 		}
 	}
+}
+frameEvent(gba) {
+	document.getElementById("prng").innerText = (gba.mmu.load32(0x3005D80)>>>0).toString(16); //poor way of updating rng values but works for now
+	document.getElementById("frame").innerText = gba.frame;
 }
