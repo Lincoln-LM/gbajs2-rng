@@ -346,7 +346,7 @@
 					let battleseed = gba.mmu.load32(0x0203BD2C)>>>0;
 					let seedbyvideo = gba.mmu.load32(0x0203B0A8)>>>0;
 					let initial2 = gba.mmu.load32(0x02000000)>>>0;
-					let initial1;
+					let initial1 = 0;
 					
 					if (seedbyvideo != 0 & seedbyvideo == battleseed) {
 						initial1 = initial2;
