@@ -200,6 +200,7 @@ class GameBoyAdvance {
 		if (this.fefunc != null) {
 			this.fefunc(this);
 		}
+		this.frame += 1;
 	}
 	runStable() {
 		if (this.interval) {
