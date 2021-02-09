@@ -387,7 +387,7 @@
 						
 						while (gba.tinitial != prng & gba.backSeed != prng) {
 							gba.tinitial = next(gba.tinitial);
-							gba.backSeed = back(backSeed);
+							gba.backSeed = back(gba.backSeed);
 							gba.calibrationFrame += 1;
 						}
 						gba.adjustFrame += gba.calibrationFrame;
