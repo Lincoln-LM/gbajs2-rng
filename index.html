@@ -327,10 +327,75 @@
 				document.getElementById('screen').requestFullscreen();
 			};
 			
+			function next(s) {
+				let bs = BigInt(s);
+				bs = Number((bs * 0x41C64E6D + 0x6073) & 0xFFFFFFFF);
+				return bs;
+			}
+			function back(s) {
+				let bs = BigInt(s);
+				bs = Number((bs * 0xEEB9EB65 + 0xA3561A1) & 0xFFFFFFFF);
+				return bs;
+			}
+				
+			
 			function frameEvent(gba) {
-				let prng = gba.mmu.load32(gba.address)>>>0;
+				if (gba.game == 0) {//taken from n.o.o.b. lua
+					let prng = gba.mmu.load32(0x03005D80)>>>0;
+					let frame = gba.mmu.load32(0x020249C0)>>>0;
+					let battleseed = gba.mmu.load32(0x0203BD2C)>>>0;
+					let seedbyvideo = gba.mmu.load32(0x0203B0A8)>>>0;
+					let initial2 = gba.mmu.load32(0x02000000)>>>0;
+					let initial1;
+					
+					if (seedbyvideo != 0 & seedbyvideo == battleseed) {
+						initial1 = initial2;
+					}
+					if (seedbyvideo != 0) {
+						if (seedbyvideo == prng) {
+							gba.adjustFrame = frame;
+						}
+					}
+					if (initial1 == 0) {
+						gba.adjustFrame = 0;
+					}
+					if (initial2 != 0 & prng == initial2) {
+						gba.adjustFrame = frame; 
+					}
+					gba.frame = frame;
+					document.getElementById("prng").innerText = prng.toString(16); //poor way of updating rng values but works for now
+					document.getElementById("frame").innerText = gba.frame;
+					
+					
+					
+				if (gba.game == 1) {//taken from n.o.o.b. lua
+					let prng = gba.mmu.load32(0x03004818)>>>0;
+					if (prng <= 0xFFFF & gba.frame < 8) {
+						gba.initial = gba.mmu.load32(0x03004818)>>>0;
+						gba.tinitial = gba.initial;
+					if (gba.frame > 4) {
+						gba.tinitial = next(gba.tinitial);
+					}
+					if (prng == 0 & gba.frame == 0) {
+						gba.initial = 0;
+						gba.adjustFrame = 0;
+					}
+					if (gba.frame > 4 & gba.tinitial != prng) {
+							gba.backSeed = gba.tinitial;
+							gba.calibrationFrame = 0;
+						
+						while (gba.tinitial != prng & gba.backSeed != prng) {
+							gba.tinitial next(gba.tinitial);
+							gba.backSeed = back(backSeed);
+							gba.calibrationFrame += 1;
+						}
+						gba.adjustFrame += gba.calibrationFrame;
+					}
 				document.getElementById("prng").innerText = prng.toString(16); //poor way of updating rng values but works for now
 				document.getElementById("frame").innerText = gba.frame;
+					
+						
+					
 			}
 		</script>
 	</head>
