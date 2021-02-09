@@ -373,6 +373,7 @@
 					if (prng <= 0xFFFF & gba.frame < 8) {
 						gba.initial = gba.mmu.load32(0x03004818)>>>0;
 						gba.tinitial = gba.initial;
+					}
 					if (gba.frame > 4) {
 						gba.tinitial = next(gba.tinitial);
 					}
@@ -391,6 +392,7 @@
 						}
 						gba.adjustFrame += gba.calibrationFrame;
 					}
+				}
 				document.getElementById("prng").innerText = prng.toString(16); //poor way of updating rng values but works for now
 				document.getElementById("frame").innerText = gba.frame;
 					
