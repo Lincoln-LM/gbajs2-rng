@@ -60,6 +60,7 @@ class GameBoyAdvance {
 		this.lastVblank = 0;
 		this.frame = 0;
 		this.fefunc = null;
+		this.address = 0x0;
 		
 		this.queue = null;
 		this.reportFPS = null;
@@ -138,6 +139,7 @@ class GameBoyAdvance {
 		this.audio.clear();
 		this.video.clear();
 		this.sio.clear();
+		this.frame = 0;
 
 		this.mmu.mmap(this.mmu.REGION_IO, this.io);
 		this.mmu.mmap(
