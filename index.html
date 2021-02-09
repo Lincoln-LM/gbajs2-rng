@@ -329,12 +329,12 @@
 			
 			function next(s) {
 				let bs = BigInt(s);
-				bs = Number((bs * 0x41C64E6D + 0x6073) & 0xFFFFFFFF);
+				bs = Number((bs * BigInt(0x41C64E6D) + BigInt(0x6073)) & BigInt(0xFFFFFFFF));
 				return bs;
 			}
 			function back(s) {
 				let bs = BigInt(s);
-				bs = Number((bs * 0xEEB9EB65 + 0xA3561A1) & 0xFFFFFFFF);
+				bs = Number((bs * BigInt(0xEEB9EB65) + BigInt(0xA3561A1)) & BigInt(0xFFFFFFFF));
 				return bs;
 			}
 				
