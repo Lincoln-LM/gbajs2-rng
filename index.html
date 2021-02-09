@@ -327,8 +327,9 @@
 				document.getElementById('screen').requestFullscreen();
 			};
 			
-			function frameEvent(gba) {
-				document.getElementById("prng").innerText = (gba.mmu.load32(0x3005D80)>>>0).toString(16); //poor way of updating rng values but works for now
+			function frameEvent(gba,address) {
+				let prng = gba.mmu.load32(address)>>>0;
+				document.getElementById("prng").innerText = prng.toString(16); //poor way of updating rng values but works for now
 				document.getElementById("frame").innerText = gba.frame;
 			}
 		</script>
