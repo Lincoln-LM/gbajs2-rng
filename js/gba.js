@@ -197,7 +197,6 @@ class GameBoyAdvance {
 			this.seenSave = true;
 			this.mmu.flushSave();
 		}
-		this.frame += 1;
 		if (this.fefunc != null) {
 			this.fefunc(this);
 		}
