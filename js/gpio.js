@@ -197,7 +197,12 @@ class GameBoyAdvanceRTC {
 		return output;
 	}
 	updateClock() {
-		var date = new Date();
+		if (CustomRTC == null) {
+			var date = new Date();
+		}
+		else {
+			var date = CustomRTC;
+		}
 		this.time[0] = this.bcd(date.getFullYear());
 		this.time[1] = this.bcd(date.getMonth() + 1);
 		this.time[2] = this.bcd(date.getDate());
